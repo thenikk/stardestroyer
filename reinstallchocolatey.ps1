@@ -1,4 +1,7 @@
-#uninstall chocolatey
+#This script is used for a complete reinstallation of Chocolatey with all it's apps.
+#That means it will remember what apps were installed before removing all Choco components.
+
+#uninstall Chocolatey
 if (!$env:ChocolateyInstall) {
   Write-Warning "The ChocolateyInstall environment variable was not found. `n Chocolatey is not detected as installed. Nothing to do"
   return
@@ -8,7 +11,7 @@ if (!(Test-Path "$env:ChocolateyInstall")) {
   return
 }
 else {
-#create array with current Choco installations
+#create an array with current installed apps by Choco
 $chocoapps = @()
 $chocoapps = choco list -l -r
 
@@ -22,7 +25,6 @@ $chocoarray += $chocoarrayposition.split('|')[0]
 #uninstall all Choco apps
 choco uninstall all -y
 }
-
 
 $userPath = [Microsoft.Win32.Registry]::CurrentUser.OpenSubKey('Environment').GetValue('PATH', '', [Microsoft.Win32.RegistryValueOptions]::DoNotExpandEnvironmentNames).ToString()
 $machinePath = [Microsoft.Win32.Registry]::LocalMachine.OpenSubKey('SYSTEM\CurrentControlSet\Control\Session Manager\Environment\').GetValue('PATH', '', [Microsoft.Win32.RegistryValueOptions]::DoNotExpandEnvironmentNames).ToString()
@@ -70,7 +72,7 @@ Start-Sleep -s 10
 
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
-#Reinstallation of already installed apps
+#Reinstallation of all apps by Choco
 foreach($chocoinstallposition in $chocoarray){
 choco install $chocoinstallposition -y
 }

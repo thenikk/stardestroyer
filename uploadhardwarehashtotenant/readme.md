@@ -11,7 +11,7 @@ You can find the page with all already uploaded hashes under: https://endpoint.m
  2. Start script with "*path*/start" (for example d:/start)
  3. If there is no config.txt file in same directory, you will be querried for information, please follow the instructions and enter the information you want to have (can be left blank, if you dont need it)
 
-![enter image description here](https://stardestroyer.xyz/content/images/2021/02/flow.gif)
+![enter image description here](https://stardestroyer.xyz/content/images/2021/02/flow-1.gif)
 
 Please feel free to leave me some feedback, or improvements you want to have. Everything is greatly appreciated. This is my first "real" script so I'm excited to hear what you think.  
 Special thanks to Joshua, for helping me out with scripting ;)
